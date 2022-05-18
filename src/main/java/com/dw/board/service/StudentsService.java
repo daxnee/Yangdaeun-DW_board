@@ -25,7 +25,7 @@ public class StudentsService {
 		vo.setStudentsPassword(password);
 		return studentsMapper.insertStudents(vo);
 	}
-	
+	//
 	//학생 조회
 	public List<StudentsVO> getAllStudentsList(){
 		return studentsMapper.selectAllStudentsList();
