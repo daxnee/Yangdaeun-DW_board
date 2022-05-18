@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.dw.board.mapper.StudentsMapper;
@@ -14,8 +15,14 @@ public class StudentsService {
 	
 	@Autowired
 	private StudentsMapper studentsMapper;
+	@Autowired
+	private PasswordEncoder passwordEndoder; // config에 등록한 @bean이 대신해주는 것임! 안쓰면 new로 호출하면 됨
 	
+	//학생 저장
 	public int insertStudents(StudentsVO vo) {
+		String password = vo.getStudentsPassword();
+		password = passwordEndoder.encode(password); // 가져와서 암호화한 것을 다시 리턴
+		vo.setStudentsPassword(password);
 		return studentsMapper.insertStudents(vo);
 	}
 	
