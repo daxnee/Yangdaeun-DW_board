@@ -10,6 +10,4 @@ public class StudentsVO {
 	private String studentsName;
 	private String studentsPassword;
 	private String createAt;
-
-	
 }

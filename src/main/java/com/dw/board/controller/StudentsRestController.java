@@ -20,20 +20,23 @@ import com.dw.board.vo.StudentsVO;
 @RestController
 @RequestMapping("/api/v1") // v1: version
 // @RequestMapping("/api/v1") : 아래 중복되는 URL을 간소화
+// url주소 검색할 때는 api/v1 붙여야 함!
 public class StudentsRestController {
 
 	@Autowired
 	private StudentsService studentsService;
 	
+	//post는 body로 데이터를 받아야 한다(보안)
+	//ex) password가 url에 보이면 안되는 이유
+
 	//학생 저장
-		//post는 body로 데이터를 받음(보안)
 		@CrossOrigin 
-		@PostMapping("/students")
+		@PostMapping("/students") // api/v1/students : api주소고 버전은 1이라는 뜻
 		public int callSaveStudents(@RequestBody StudentsVO vo) {
 			return studentsService.insertStudents(vo);
 		}
 
-	//학생 조회
+	//VO로 학생 조회
 		@GetMapping("/students")
 		public List<StudentsVO> callStudentsList(){
 			return studentsService.getAllStudentsList();
@@ -41,7 +44,7 @@ public class StudentsRestController {
 	
 	//학생 조회 (map으로 리턴해보기)
 		@GetMapping("/students/map")
-		public List<Map<String, Object>> callStudentsListByMap(){
+		public List<Map<String,Object>> callStudentsListByMap(){
 			return studentsService.getAllStudentListByMap();
 		}
 	

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dw.board.mapper.StudentsMapper;
 import com.dw.board.vo.StudentsVO;
@@ -15,6 +16,7 @@ public class StudentsService {
 	
 	@Autowired
 	private StudentsMapper studentsMapper;
+	
 	@Autowired
 	private PasswordEncoder passwordEndoder; // config에 등록한 @bean이 대신해주는 것임! 안쓰면 new로 호출하면 됨
 	
@@ -25,7 +27,9 @@ public class StudentsService {
 		vo.setStudentsPassword(password);
 		return studentsMapper.insertStudents(vo);
 	}
-	//
+	
+	
+	
 	//학생 조회
 	public List<StudentsVO> getAllStudentsList(){
 		return studentsMapper.selectAllStudentsList();
@@ -42,14 +46,16 @@ public class StudentsService {
 	}
 	
 	//특정 학생 삭제
+	@Transactional(rollbackFor = {Exception.class})
 	public int getDeleteStudents(int studentsId) {
-		return studentsMapper.DeleteStudents(studentsId);
+		return studentsMapper.deleteStudents(studentsId);
 	}
 	
 	// 특정 학생 수정
+	@Transactional(rollbackFor = {Exception.class})
 	public int getUpdateStudents(StudentsVO vo, int studentsId) {
 		vo.setStudentsId(studentsId);
-		return studentsMapper.updateStudents(vo, studentsId);
+		return studentsMapper.updateStudents(vo);
 	}
 	
 }

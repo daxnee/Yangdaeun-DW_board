@@ -4,25 +4,26 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.dw.board.vo.StudentsVO;
 
 @Mapper
 public interface StudentsMapper {
-	//단축키 :  해당 메소드를 클릭하고 + alt + shift + J
+	//단축키 : 해당 메소드를 클릭하고 + alt + shift + J
 	/**
 	 * @param vo
 	 * @return
 	 * @author : Daeun Yang
 	 * @date : 2022. 5. 18.
-	 * comment : 
+	 * comment : 학생 저장
 	 */
 	public int insertStudents(StudentsVO vo);
 	/**
 	 * @return
 	 * @author : Daeun Yang
 	 * @date : 2022. 5. 18.
-	 * comment : 
+	 * comment : 학생 조회
 	 */
 	public List<StudentsVO> selectAllStudentsList();
 	
@@ -36,9 +37,9 @@ public interface StudentsMapper {
 	
 	public StudentsVO selectStudents(int studentsId);
 	
-	public int DeleteStudents(int studentsId);
+	public int deleteStudents(int studentsId);
 	
-	public int updateStudents(StudentsVO vo, int studentsId);
+	public int updateStudents(StudentsVO vo);
 		
 	
 }
