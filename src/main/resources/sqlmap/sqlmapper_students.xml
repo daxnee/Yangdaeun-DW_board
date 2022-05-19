@@ -16,7 +16,7 @@
 	 
 	 <select id="selectAllStudentsList" resultType = "StudentsVO">
 	 	SELECT 
-	 		students_id AS studentsId, <!-- 이렇게 해야 리저트 타입과 맞게 매핑이됨 -->
+	 		students_id AS boardId, <!-- 이렇게 해야 리저트 타입과 맞게 매핑이됨 -->
 	 		students_name AS studentsName,
 	 		students_password AS studentsPassword,
 	 		create_at AS createAt
@@ -26,6 +26,7 @@
 	 <!-- map으로 리턴해보기 -->
 	 <!-- Map<>으로 데이터를 받을 경우에는 resultType(==returnType)을 map으로 해줘야 한다. -->
 	  <select id="selectAllStudentsListByMap" resultType = "map">
+	 	<!-- 별칭을 주는 이유: studentsVO의 필드변수명과 같아야만 매핑이 됨 -->
 	 	SELECT 
 	 		students_id AS studentsId, <!-- 이렇게 해야 리저트 타입과 맞게 매핑이됨 -->
 	 		students_name AS studentsName,
@@ -56,11 +57,22 @@
 	  <!-- 수정 -->
 	 <update id="updateStudents">
 	 	UPDATE 
-			students
+	 		students
 		SET 
 			students_name = #{studentsName}, <!-- body로 받음 -->
 			students_password = #{studentsPassword} <!-- body로 받음 -->
 		WHERE 
 			students_id = #{studentsId} <!-- service 메소드의 파라미터로 받는다 -->
 	 </update>
+	 
+	 <select id="selectStudentsOne" resultType = "StudentsVO">
+		SELECT 
+	 		students_id AS studentsId,
+	 		students_name AS studentsName,
+	 		students_password AS studentsPassword,
+	 		create_at AS createAt
+	 	FROM students 
+	 	WHERE students_name = #{studentsName}
+	 
+	 </select>
 </mapper>

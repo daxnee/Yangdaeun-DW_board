@@ -5,11 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BoardVO {
+public class BoardVO extends StudentsVO{
 	private int boardId;
 	private String title;
 	private String content;
 	private String updateAt;
 	private String createAt;
-	
+	private int studentsId; // 학생id(fk)
 }

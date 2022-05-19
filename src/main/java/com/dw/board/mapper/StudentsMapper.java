@@ -41,5 +41,14 @@ public interface StudentsMapper {
 	
 	public int updateStudents(StudentsVO vo);
 		
+	/**
+	 * @param vo
+	 * @return
+	 * @author : Daeun Yang
+	 * @date : 2022. 5. 19.
+	 * comment : 학생 이름으로 학생정보 조회
+	 */
+	public StudentsVO selectStudentsOne(StudentsVO vo);
+	
 	
 }

@@ -26,6 +26,17 @@ public class StudentsRestController {
 	@Autowired
 	private StudentsService studentsService;
 	
+	//0519
+	//중요한 정보를 서버에 전송할 때 post사용!
+	@CrossOrigin 
+	@PostMapping("/login") 
+	public boolean callIsLogin(@RequestBody StudentsVO vo) { // 회원정보, 이름만 있는 상태
+		return studentsService.IsStudents(vo); 
+	}
+	// boolean으로 html과 db에서 온 데이터(비밀번호)를 비교해서 같으면 true, 다르면 false를 반환함(postman)에서 확인가능
+	// 학생을 저장하고(post), 같은 json데이터를 비교하면(post) 비번을 확인해 결과를 리턴한다.
+	
+	
 	//post는 body로 데이터를 받아야 한다(보안)
 	//ex) password가 url에 보이면 안되는 이유
 

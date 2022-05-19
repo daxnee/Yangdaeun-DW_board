@@ -58,4 +58,20 @@ public class StudentsService {
 		return studentsMapper.updateStudents(vo);
 	}
 	
+	//가입된 학생인지 아닌지 여부 체크
+	public boolean IsStudents(StudentsVO vo) { // post로 이름을 받아옴 
+		StudentsVO student = studentsMapper.selectStudentsOne(vo); // student mapper에서 쿼리를 돌린 결과를 변수에 대입
+		if(student == null) { // 쿼리 결과가 null이면 리턴
+			return false;
+		}
+		String inputPassword = vo.getStudentsPassword(); // HTML에서 가져온(입력한) 비밀번호
+		String password = student.getStudentsPassword(); // DB에서 가져온 비밀번호
+		
+		if(!passwordEndoder.matches(inputPassword, password)) {
+			return false;
+		}
+		
+		return true;
+	}
+	
 }
