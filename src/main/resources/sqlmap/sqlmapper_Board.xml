@@ -15,7 +15,6 @@
 	)
 	 VALUES
 	(
-	
 		#{title},
 		#{content},
 		<if test="studentsId !=0">
@@ -23,7 +22,6 @@
 		now(),
 		now()
 	)
-	
 	</insert>
 
 <!-- 게시판 조회 -->
@@ -36,8 +34,5 @@
 			create_at AS createAt
 		FROM board 
 	</select>
-
-
-
 
 </mapper>

@@ -23,7 +23,7 @@ public interface StudentsMapper {
 	 * @return
 	 * @author : Daeun Yang
 	 * @date : 2022. 5. 18.
-	 * comment : 학생 조회
+	 * comment : list로 학생 조회
 	 */
 	public List<StudentsVO> selectAllStudentsList();
 	
@@ -35,10 +35,31 @@ public interface StudentsMapper {
 	 */
 	public List<Map<String, Object>> selectAllStudentsListByMap();
 	
+	/**
+	 * @param studentsId
+	 * @return
+	 * @author : Daeun Yang
+	 * @date : 2022. 5. 20.
+	 * comment : 특정 학생 조회
+	 */
 	public StudentsVO selectStudents(int studentsId);
 	
+	/**
+	 * @param studentsId
+	 * @return
+	 * @author : Daeun Yang
+	 * @date : 2022. 5. 20.
+	 * comment : 학생 삭제
+	 */
 	public int deleteStudents(int studentsId);
 	
+	/**
+	 * @param vo
+	 * @return
+	 * @author : Daeun Yang
+	 * @date : 2022. 5. 20.
+	 * comment : 학생 수정
+	 */
 	public int updateStudents(StudentsVO vo);
 		
 	/**
