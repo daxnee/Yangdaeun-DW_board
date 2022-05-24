@@ -1,8 +1,9 @@
 package com.dw.board.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Getter;
 import lombok.Setter;
-
 @Getter
 @Setter
 public class BoardVO extends StudentsVO{

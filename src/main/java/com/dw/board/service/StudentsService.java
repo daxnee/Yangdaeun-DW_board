@@ -69,7 +69,7 @@ public class StudentsService {
 		
 		if(!passwordEndoder.matches(inputPassword, password)) {
 			return false;
-		}
+		}//비번이 다르면 false
 		
 		return true;
 	}

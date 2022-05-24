@@ -3,6 +3,8 @@ package com.dw.board.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +32,13 @@ public class StudentsRestController {
 	//중요한 정보를 서버에 전송할 때 post사용!
 	@CrossOrigin 
 	@PostMapping("/login") 
-	public boolean callIsLogin(@RequestBody StudentsVO vo) { // 회원정보, 이름만 있는 상태
+	public boolean callIsLogin(@RequestBody StudentsVO vo, HttpSession httpSession) { // 회원정보, 이름만 있는 상태
+		boolean isLogin = studentsService.IsStudents(vo); // IsStudents()결과를 (true) isLogin에 넣어줌 (비밀번호가 같은지 다른지)
+		if(isLogin) {
+			httpSession.setAttribute("name", "yangdaeun"); //true면 세션에 저장
+			// 세션에 저장하는 방식은 key, value
+			// 내가 설정하기 전까진 yangdaeun 이름이 세션 value에 저장됨
+		}
 		return studentsService.IsStudents(vo); 
 	}
 	// boolean으로 html과 db에서 온 데이터(비밀번호)를 비교해서 같으면 true, 다르면 false를 반환함(postman)에서 확인가능
@@ -53,9 +61,12 @@ public class StudentsRestController {
 			return studentsService.getAllStudentsList();
 		}
 	
-	//학생 조회 (map으로 리턴해보기)
+	//학생 조회 (map으로 리턴해보기) //세션에서 불러오기 0524
 		@GetMapping("/students/map")
-		public List<Map<String,Object>> callStudentsListByMap(){
+//		public List<Map<String,Object>> callStudentsListByMap()
+		public List<Map<String,Object>> callStudentsListByMap(HttpSession httpSession){
+			String name = (String)httpSession.getAttribute("name");
+			System.out.println("세션에서 가져온 이름은 ===> " + name);
 			return studentsService.getAllStudentListByMap();
 		}
 	
