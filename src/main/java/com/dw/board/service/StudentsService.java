@@ -58,18 +58,25 @@ public class StudentsService {
 		return studentsMapper.updateStudents(vo);
 	}
 	
-	//가입된 학생인지 아닌지 여부 체크
-	public boolean IsStudents(StudentsVO vo) { // post로 이름을 받아옴 
-		StudentsVO student = studentsMapper.selectStudentsOne(vo); // student mapper에서 쿼리를 돌린 결과를 변수에 대입
-		if(student == null) { // 쿼리 결과가 null이면 리턴
+	// (세션)
+	@Transactional(rollbackFor = {Exception.class})
+	public boolean IsStudents(StudentsVO vo) { // html에서 가져온 데이터(post로 이름을 받아옴)
+		StudentsVO student = studentsMapper.selectStudentsOne(vo);	// mapper에서 쿼리를 돌린 결과를 변수에 대입
+		// Mapper에 있는 메소드 파라미터에 쿼리의 결과를 받아서 (암호화된 password를 담은 vo)
+		// 새로운 클래스 타입 student에 대입
+		// IsStudents(StudentsVO vo) == html에서 가져온 데이터 / student == DB에서 가져온 데이터
+		// 둘을 비교해주면 된다.
+		if(student == null) { // 쿼리 결과가 null(회원 목록에 없으면)이면 리턴 false
 			return false;
 		}
-		String inputPassword = vo.getStudentsPassword(); // HTML에서 가져온(입력한) 비밀번호
-		String password = student.getStudentsPassword(); // DB에서 가져온 비밀번호
-		
-		if(!passwordEndoder.matches(inputPassword, password)) {
-			return false;
-		}//비번이 다르면 false
+		//비밀번호 일치 여부 체크
+		String inputPassword = vo.getStudentsPassword(); // HTML에서 가져온(입력한) 비밀번호 (암호화 되기전 비번)
+		String password = student.getStudentsPassword(); // DB에서 가져온 비밀번호 (암호화 된 비번)
+		System.out.println("HTML에서 보낸 비번 => "+ inputPassword);
+		System.out.println("암호화된 DB 데이터 비번 => "+ password);
+		if(!passwordEndoder.matches(inputPassword, password)) { // 내장함수인 matches가 일치여부를 판단해준다.
+			return false; //비번이 다르면 false
+		}
 		
 		return true;
 	}

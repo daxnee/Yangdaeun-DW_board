@@ -21,7 +21,9 @@
 	)
 	</insert>
 
-<!-- 게시판 조회 (join)--><!--JOIN으로 조회할 때 map으로  -->
+	<!-- 게시판 조회 (join)-->
+	<!--JOIN으로 조회할 때 map으로  -->
+	
 	<select id="selectBoard" resultType = "map">
 		SELECT
 			board_id AS boardId,

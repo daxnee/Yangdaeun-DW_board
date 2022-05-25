@@ -23,12 +23,12 @@
 	 	FROM students 
 	 </select>
 	 
-	 <!-- map으로 리턴해보기 -->
+	 <!-- map으로 리턴해보기 (join)-->
 	 <!-- Map<>으로 데이터를 받을 경우에는 resultType(==returnType)을 map으로 해줘야 한다. -->
 	  <select id="selectAllStudentsListByMap" resultType = "map">
 	 	<!-- 별칭을 주는 이유: studentsVO의 필드변수명과 같아야만 매핑이 됨 -->
 	 	SELECT 
-	 		students_id AS studentsId, <!-- 이렇게 해야 리저트 타입과 맞게 매핑이됨 -->
+	 		students_id AS studentsId, <!-- 별칭을 필드변수와 같게 해줘야 resultType과 맞게 매핑이됨 -->
 	 		students_name AS studentsName,
 			students_password AS studentsPassword,
 			create_at AS createAt
