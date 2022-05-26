@@ -8,6 +8,10 @@ import org.apache.ibatis.annotations.Param;
 
 import com.dw.board.vo.BoardVO;
 
+/**
+ * @author admin
+ *
+ */
 @Mapper
 public interface BoardMapper {
 
@@ -27,14 +31,26 @@ public interface BoardMapper {
 	 */
 	public List<Map<String, Object>> selectBoard();
 	
-	
-	//삭제
+	/**
+	 * @param boardId
+	 * @return
+	 * comment : 게시판 게시물 삭제
+	 */
 	public int deleteBoard(int boardId);
 	
-	//수정
+	/**
+	 * @param boardId
+	 * @return
+	 * comment : 게시판 게시물 수정
+	 */
 	public int updateBoard(BoardVO vo);
 	
-	//상세보기
+	
+	/**
+	 * @param boardId
+	 * @return
+	 * comment : 특정 회원 게시물 조회
+	 */
 	public BoardVO getBoard(int boardId);
 	
 	

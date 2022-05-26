@@ -45,7 +45,7 @@ public class BoardService {
 	//특정학생 게시물 상세 조회
 	@Transactional(rollbackFor = {Exception.class})
 	public BoardVO getBoard(int boardId) {
-		return boardMapper.getB+oard(boardId);
+		return boardMapper.getBoard(boardId);
 	}
 	
 }
