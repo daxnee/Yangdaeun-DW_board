@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.dw.board.vo.BoardVO;
 
@@ -25,6 +26,18 @@ public interface BoardMapper {
 	 * comment : 게시판 조회
 	 */
 	public List<Map<String, Object>> selectBoard();
+	
+	
+	//삭제
+	public int deleteBoard(int boardId);
+	
+	//수정
+	public int updateBoard(BoardVO vo);
+	
+	//상세보기
+	public BoardVO getBoard(int boardId);
+	
+	
 	
 	
 }
