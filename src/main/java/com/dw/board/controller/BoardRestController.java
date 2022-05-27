@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dw.board.service.BoardService;
@@ -63,6 +64,20 @@ public class BoardRestController {
 		@GetMapping("/board/boardId/{id}")
 		public BoardVO callBoard(@PathVariable("id") int boardId) { // 사용자의 요구사항이 매번 달라지니까 데이터 타입을 포괄적으로 (BoardVO로) 받아준다.
 			return boardService.getBoard(boardId);
+		}
+		
+		//게시물 조회수 count
+		@CrossOrigin
+		@PatchMapping("/board/views/boardId/{id}")
+		public int callBoardViews(@PathVariable("id") int boardId) {
+			return boardService.getUpdateBoardView(boardId);
+		}
+		
+		// 쿼리스트링으로 검색한 작성자 게시판 리스트 조회
+		@CrossOrigin
+		@GetMapping("/board/search")
+		public List<Map<String, Object>> callBoardSearch(@RequestParam("writer") String studentsName){ // @RequestParam : "writer"
+			return boardService.getSearchBoardList(studentsName);
 		}
 		
 		

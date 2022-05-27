@@ -12,5 +12,6 @@ public class BoardVO extends StudentsVO{
 	private String content;
 	private String updateAt;
 	private String createAt;
+	private int cnt; // 조회수 
 	private int studentsId; // 학생id(fk)
 }

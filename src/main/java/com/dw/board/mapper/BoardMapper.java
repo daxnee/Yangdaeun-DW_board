@@ -38,6 +38,27 @@ public interface BoardMapper {
 	public BoardVO getBoard(int boardId);
 	
 	
+	/**
+	 * @param boardId
+	 * @return
+	 * @author : Daeun Yang
+	 * @date : 2022. 5. 27.
+	 * comment : 특정 회원 조회(count)
+	 */
+	public BoardVO selectBoardOne(int boardId);
 	
+	/**
+	 * @param vo
+	 * @return
+	 * @author : Daeun Yang
+	 * @date : 2022. 5. 27.
+	 * comment : 조회수 count keyup
+	 */
+	public int updateBoardViews(BoardVO vo);
 	
+	//map 쿼리스트링
+	public List<Map<String, Object>> selectSearchBoardList(String studentsName);
+	// 파라미터값이 두개면 @param 써줘야 한다. 한 개는 생략 가능
+	
+
 }

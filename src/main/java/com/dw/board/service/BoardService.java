@@ -45,7 +45,28 @@ public class BoardService {
 	//특정학생 게시물 상세 조회
 	@Transactional(rollbackFor = {Exception.class})
 	public BoardVO getBoard(int boardId) {
-		return boardMapper.getB+oard(boardId);
+		return boardMapper.getBoard(boardId);
 	}
+	//----
+	
+	
+	public int getUpdateBoardView(int boardId) {
+		//1. 게시판 번호를 이용해서 조회 수 컬럼을 select
+		BoardVO vo = boardMapper.selectBoardOne(boardId);
+		int views = vo.getCnt();
+		++views; //2. 조회 수를 1증가 함.
+		vo.setCnt(views);
+		vo.setBoardId(boardId);
+		return boardMapper.updateBoardViews(vo); //3.조회 수 update
+	}
+	
+	public List<Map<String, Object>> getSearchBoardList(String studentsName){
+		return boardMapper.selectSearchBoardList(studentsName);
+	}
+
+	
+	
+	
+	
 	
 }

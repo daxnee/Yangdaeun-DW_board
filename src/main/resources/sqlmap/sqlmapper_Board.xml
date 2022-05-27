@@ -32,7 +32,8 @@
 			b.title,
 			b.content,
 			ifnull(date_format(b.update_at, '%Y-%m-%d'), '-' )  AS updateAt, 
-			date_format(b.create_at, '%Y-%m-%d')  AS createAt
+			date_format(b.create_at, '%Y-%m-%d')  AS createAt,
+			b.cnt
 		FROM board AS b
 		INNER JOIN students AS s
 		ON b.students_Id = s.students_id
@@ -69,6 +70,44 @@
 	 	FROM board 
 	 	WHERE board_id = #{boardId}
 	 </select>
+	 
+	 
+	 <select id="selectBoardOne" resultType = "BoardVO">
+		select
+		title,
+		content,
+		create_at,
+		cnt
+		from board
+		WHERE board_id = #{boardId}
+	 </select>
+	 
+	 <!-- 조회수 업데이트 -->
+	 <update id="updateBoardViews">
+		UPDATE board
+		SET 
+			cnt = #{cnt}
+		WHERE board_id = #{boardId}
+	</update>
+	 
+	 <!-- 0527 -->
+	 <select id="selectSearchBoardList" resultType="map">
+		SELECT
+			b.board_id AS boardId,
+			s.students_id AS studentsId,
+			s.students_name AS studentsName,
+			b.title,
+			b.content,
+			IFNULL(DATE_FORMAT(b.update_at,'%Y-%m-%d'),'-') AS updateAt,
+			DATE_FORMAT(b.create_at,'%Y-%m-%d') AS createAt,
+			b.cnt
+		FROM board AS b
+		INNER JOIN students AS s
+		ON b.students_id = s.students_id
+		WHERE s.students_name LIKE CONCAT('%',#{studentsName},'%')
+	</select>
+		<!-- mybatis에서는 CONCAT을 사용해야 한다. LIKE 인식을 못함)-->
+	 
 	 
 	 
 	
