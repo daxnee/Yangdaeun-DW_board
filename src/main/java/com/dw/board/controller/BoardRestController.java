@@ -58,11 +58,10 @@ public class BoardRestController {
 		}
 		
 		
-		
 		//게시물 상세보기
 		@CrossOrigin
 		@GetMapping("/board/boardId/{id}")
-		public BoardVO callBoard(@PathVariable("id") int boardId) { // 사용자의 요구사항이 매번 달라지니까 데이터 타입을 포괄적으로 (BoardVO로) 받아준다.
+		public BoardVO callBoard(@PathVariable("id") int boardId) { //사용자의 요구사항이 매번 달라지니까 데이터 타입을 포괄적으로 (BoardVO로) 받아준다.
 			return boardService.getBoard(boardId);
 		}
 		
