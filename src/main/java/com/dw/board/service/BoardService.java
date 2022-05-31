@@ -63,7 +63,14 @@ public class BoardService {
 	public List<Map<String, Object>> getSearchBoardList(String studentsName){
 		return boardMapper.selectSearchBoardList(studentsName);
 	}
-
+	
+	// --- 0531
+	//학생 수, 게시글 수, 작성자수, 총 조회수 통계
+	// as로 정한 별칭이 key값, 나온 쿼리 결과값이 value로 들어감
+	// Object? : 자식은 부모에 대입이 되니까 모든 데이터 타입을 받을 수 있음
+	public List<Map<String, Object>> getBoardStatistics(){
+		return boardMapper.selectBoardStatistics();
+	}
 	
 	
 	

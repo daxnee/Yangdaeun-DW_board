@@ -76,5 +76,14 @@ public interface BoardMapper {
 	public List<Map<String, Object>> selectSearchBoardList(String studentsName);
 	// 파라미터값이 두개면 @param 써줘야 한다. 한 개는 생략 가능
 	
+	
+	// --- 0531
+	/**
+	 * @return
+	 * @author : Daeun Yang
+	 * @date : 2022. 5. 31.
+	 * comment : 통계테이블 만들기
+	 */
+	public List<Map<String, Object>> selectBoardStatistics();
 
 }
