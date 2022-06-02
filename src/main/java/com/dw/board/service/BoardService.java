@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dw.board.mapper.BoardMapper;
 import com.dw.board.vo.BoardVO;
+import com.github.pagehelper.PageHelper;
 
 @Service
 public class BoardService {
@@ -23,8 +24,10 @@ public class BoardService {
 		return boardMapper.insertBoard(vo);
 	}
 	
-	//게시판 조회
-	public List<Map<String, Object>> selectBoard(){
+	//게시판 전체 조회
+	// pageNum : 현재 페이지 , pageSize : 한 페이지에 게시물 몇 개 보여줄지 
+	public List<Map<String, Object>> selectBoard(int pageNum, int pageSize){
+		PageHelper.startPage(pageNum, pageSize);
 		return boardMapper.selectBoard();
 	}
 	
@@ -68,7 +71,7 @@ public class BoardService {
 	//학생 수, 게시글 수, 작성자수, 총 조회수 통계
 	// as로 정한 별칭이 key값, 나온 쿼리 결과값이 value로 들어감
 	// Object? : 자식은 부모에 대입이 되니까 모든 데이터 타입을 받을 수 있음
-	public List<Map<String, Object>> getBoardStatistics(){
+	public Map<String, Object> getBoardStatistics(){
 		return boardMapper.selectBoardStatistics();
 	}
 	

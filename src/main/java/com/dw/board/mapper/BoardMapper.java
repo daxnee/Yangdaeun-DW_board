@@ -84,6 +84,6 @@ public interface BoardMapper {
 	 * @date : 2022. 5. 31.
 	 * comment : 통계테이블 만들기
 	 */
-	public List<Map<String, Object>> selectBoardStatistics();
+	public Map<String, Object> selectBoardStatistics();
 
 }

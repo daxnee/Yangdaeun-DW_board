@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dw.board.service.BoardService;
 import com.dw.board.vo.BoardVO;
+import com.github.pagehelper.PageInfo;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -36,8 +37,12 @@ public class BoardRestController {
 		//게시판 전체조회(R)
 		@CrossOrigin
 		@GetMapping("/board")
-		public List<Map<String, Object>> callBoardList(){
-			return boardService.selectBoard();
+		//리턴타입을 List<Map<String, Object>> => PageInfo<Map<String, Object>>
+		public PageInfo<Map<String, Object>> callBoardList(@RequestParam("pageNum") int pageNum, 
+				@RequestParam("pageSize") int pageSize ){
+			
+			List<Map<String, Object>> list =  boardService.selectBoard(pageNum, pageSize);
+			return new PageInfo<Map<String, Object>>(list) ;
 		}
 		
 		//----0526
@@ -83,7 +88,7 @@ public class BoardRestController {
 		//게시판 통계 조회
 		@CrossOrigin
 		@GetMapping("/board/statistics")
-		public List<Map<String, Object>> callBoardStatistics(){
+		public Map<String, Object> callBoardStatistics(){
 			return boardService.getBoardStatistics();
 		}
 		

@@ -12,7 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration // 설정파일 어노테이션
 @EnableWebSecurity // 웹보안을 가능하게 해줌
-
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
