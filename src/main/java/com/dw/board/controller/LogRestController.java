@@ -30,7 +30,6 @@ public class LogRestController {
 		return new PageInfo<Map<String, Object>>(list);
 	}
 	
-	
 	// 특정 logId의 로그기록을 가져오기
 	@CrossOrigin
 	@GetMapping("/logs/logId/{logId}")

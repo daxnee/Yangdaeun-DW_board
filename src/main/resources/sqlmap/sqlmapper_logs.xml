@@ -34,6 +34,7 @@
 	 	FROM board_logs
 	 	<if test='logId != 0'>
 	 	<!-- 만약 logid가 0이 아니라면 where절 실행해줘 -->
+	 	<!-- 따로 쿼리문 만들지 않고 if문으로 실행할 -->
 	 	WHERE log_id = #{logId}
 	 	</if>
 	 </select>
