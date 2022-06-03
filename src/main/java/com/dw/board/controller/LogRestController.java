@@ -31,6 +31,7 @@ public class LogRestController {
 	}
 	
 	
+	// 특정 logId의 로그기록을 가져오기
 	@CrossOrigin
 	@GetMapping("/logs/logId/{logId}")
 	public Map<String, Object> callLogs(@PathVariable("logId") int logId) {

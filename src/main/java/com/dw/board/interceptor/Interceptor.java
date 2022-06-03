@@ -45,6 +45,7 @@ public class Interceptor implements HandlerInterceptor{
 		
 		System.out.println("time ===> " + time);
 	
+		//로그 기록들을 intercept
 		LogVO vo = new LogVO();
 		vo.setUrl(url);
 		vo.setIp(ip);
