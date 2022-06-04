@@ -17,7 +17,7 @@ public class WebConfig implements WebMvcConfigurer{
 	public void addInterceptors(InterceptorRegistry registry) {
 		//우리가 만든 interceptor를 스프링에 등록
 		registry.addInterceptor(interceptor).excludePathPatterns("/api/v1/logs");
-		// 이 url은 가로채지 말라는 뜻임 (요청을 해도 안 나옴) console에 찍은 ip,url,Method 안나옴
+		// 이 url은 가로채지 말라는 뜻임 (요청을 해도 안 나옴) excludePathPatterns 안에 적은 url은 console에 찍어도 ip,url,Method가 안나옴
 	
 	}
 	

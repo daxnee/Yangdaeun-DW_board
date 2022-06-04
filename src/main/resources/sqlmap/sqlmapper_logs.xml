@@ -33,8 +33,9 @@
 		 	create_at
 	 	FROM board_logs
 	 	<if test='logId != 0'>
-	 	<!-- 만약 logid가 0이 아니라면 where절 실행해줘 -->
-	 	<!-- 따로 쿼리문 만들지 않고 if문으로 실행할 -->
+	 	<!-- 만약 logid가 0이 아니라면 where절도 실행해줘 -->
+	 	<!-- 특정 로그기록 조회에 대한 쿼리문을 따로 만들지 않고
+	 	 if문으로 조건을 실행할지 안할지를 설정하는 방법도 가능 -->
 	 	WHERE log_id = #{logId}
 	 	</if>
 	 </select>
