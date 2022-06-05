@@ -58,7 +58,7 @@ public class StudentsRestController {
 			return studentsService.insertStudents(vo);
 		}
 
-	//VO로 학생 조회
+	//list로 학생 조회
 		@GetMapping("/students")
 		public List<StudentsVO> callStudentsList(){
 			return studentsService.getAllStudentsList();

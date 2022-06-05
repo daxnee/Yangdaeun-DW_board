@@ -16,7 +16,7 @@
 	 
 	 <select id="selectAllStudentsList" resultType = "StudentsVO">
 	 	SELECT 
-	 		students_id AS boardId, <!-- 이렇게 해야 리저트 타입과 맞게 매핑이됨 -->
+	 		students_id AS studentsId, <!-- 이렇게 해야 리저트 타입과 맞게 매핑이됨 -->
 	 		students_name AS studentsName,
 	 		students_password AS studentsPassword,
 	 		create_at AS createAt
