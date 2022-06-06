@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dw.board.service.StudentsService;
 import com.dw.board.vo.StudentsVO;
+import com.github.pagehelper.PageInfo;
 
 @RestController
 @RequestMapping("/api/v1") // v1: version
@@ -64,15 +66,24 @@ public class StudentsRestController {
 			return studentsService.getAllStudentsList();
 		}
 	
-	//학생 조회 (map으로 리턴해보기) (세션)
+//	//학생 조회 (map으로 리턴해보기) (세션)
+//		@GetMapping("/students/map")
+//		public List<Map<String,Object>> callStudentsListByMap(HttpSession httpSession){
+////			String name = (String)httpSession.getAttribute("name");
+////			if(name == null) {
+////				return null;
+////			}
+////			System.out.println("세션에서 가져온 이름은 ===> " + name); // 일단 주석 처리 
+//			return studentsService.getAllStudentListByMap();
+//		}
+		
+		//학생 조회 (map으로 리턴해보기) (세션)
+		@CrossOrigin
 		@GetMapping("/students/map")
-		public List<Map<String,Object>> callStudentsListByMap(HttpSession httpSession){
-//			String name = (String)httpSession.getAttribute("name");
-//			if(name == null) {
-//				return null;
-//			}
-//			System.out.println("세션에서 가져온 이름은 ===> " + name); // 일단 주석 처리 
-			return studentsService.getAllStudentListByMap();
+		public PageInfo<Map<String,Object>> callStudentsListByMap(@RequestParam("pageNum") int pageNum, 
+				@RequestParam("pageSize") int pageSize ){
+			List<Map<String, Object>> list  = studentsService.getAllStudentListByMap(pageNum, pageSize);
+			return new PageInfo<Map<String, Object>>(list);
 		}
 	
 	//특정 학생 조회(PK로 조회예정)

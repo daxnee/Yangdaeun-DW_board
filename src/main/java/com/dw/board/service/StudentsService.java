@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dw.board.mapper.StudentsMapper;
 import com.dw.board.vo.StudentsVO;
+import com.github.pagehelper.PageHelper;
 
 @Service
 public class StudentsService {
@@ -36,7 +37,8 @@ public class StudentsService {
 	}
 	
 	//학생 조회 (map으로 리턴해보기)
-	public List<Map<String, Object>> getAllStudentListByMap(){
+	public List<Map<String, Object>> getAllStudentListByMap(int pageNum, int pageSize){
+		PageHelper.startPage(pageNum, pageSize);
 		return studentsMapper.selectAllStudentsListByMap();
 	}
 	
