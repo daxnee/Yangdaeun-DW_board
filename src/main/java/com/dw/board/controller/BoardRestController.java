@@ -42,7 +42,7 @@ public class BoardRestController {
 				@RequestParam("pageSize") int pageSize ){
 			
 			List<Map<String, Object>> list =  boardService.selectBoard(pageNum, pageSize);
-			return new PageInfo<Map<String, Object>>(list) ;
+			return new PageInfo<Map <String, Object>>(list) ;
 		}
 		
 		//----0526

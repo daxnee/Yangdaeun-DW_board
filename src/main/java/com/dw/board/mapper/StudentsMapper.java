@@ -31,9 +31,19 @@ public interface StudentsMapper {
 	 * @return
 	 * @author : Daeun Yang
 	 * @date : 2022. 5. 18.
-	 * comment : map으로 조회
+	 * comment : map으로 전체 조회
 	 */
 	public List<Map<String, Object>> selectAllStudentsListByMap();
+	
+	
+	/**
+	 * @return
+	 * @author : Daeun Yang
+	 * @date : 2022. 6. 7.
+	 * comment : map 쿼리 스트링 (이름조회)
+	 */
+	public List<Map<String, Object>> selectAllStudents(String studentsName);
+	
 	
 	/**
 	 * @param studentsId

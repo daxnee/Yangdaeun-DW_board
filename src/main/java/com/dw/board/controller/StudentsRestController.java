@@ -77,7 +77,7 @@ public class StudentsRestController {
 //			return studentsService.getAllStudentListByMap();
 //		}
 		
-		//학생 조회 (map으로 리턴해보기) (세션)
+		//학생 조회 (map)
 		@CrossOrigin
 		@GetMapping("/students/map")
 		public PageInfo<Map<String,Object>> callStudentsListByMap(@RequestParam("pageNum") int pageNum, 
@@ -85,8 +85,17 @@ public class StudentsRestController {
 			List<Map<String, Object>> list  = studentsService.getAllStudentListByMap(pageNum, pageSize);
 			return new PageInfo<Map<String, Object>>(list);
 		}
+		
+		
+		// 쿼리 스트링 이름조회
+		@CrossOrigin
+		@GetMapping("/students/search")
+		public List<Map<String, Object>> callStudentsSearch(@RequestParam("writer") String studentsName){ // @RequestParam : "writer"
+			return studentsService.getselectAllStudents(studentsName);
+		}
 	
 	//특정 학생 조회(PK로 조회예정)
+		@CrossOrigin
 		@GetMapping("/students/id/{id}")
 		public StudentsVO callStudents(@PathVariable("id") int studentsId) {
 			
@@ -100,7 +109,8 @@ public class StudentsRestController {
 			return studentsService.getDeleteStudents(studentsId);
 		}
 	
-	// 특정 학생 update
+	// 특정 학생 update(수정)
+
 		@PatchMapping("/students/id/{id}")
 		public int callUpdateStudents(@PathVariable("id") int studentsId, @RequestBody StudentsVO vo){
 			return studentsService.getUpdateStudents(vo, studentsId);

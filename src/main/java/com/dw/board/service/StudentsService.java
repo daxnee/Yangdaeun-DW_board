@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.dw.board.mapper.StudentsMapper;
 import com.dw.board.vo.StudentsVO;
@@ -36,10 +37,15 @@ public class StudentsService {
 		return studentsMapper.selectAllStudentsList();
 	}
 	
-	//학생 조회 (map으로 리턴해보기)
+	//학생 조회 (map)
 	public List<Map<String, Object>> getAllStudentListByMap(int pageNum, int pageSize){
 		PageHelper.startPage(pageNum, pageSize);
 		return studentsMapper.selectAllStudentsListByMap();
+	}
+	
+	// 쿼리스트링 이름조회
+	public List<Map<String, Object>> getselectAllStudents(String studentsName){
+		return studentsMapper.selectAllStudents(studentsName);
 	}
 	
 	//특정 학생 조회
@@ -54,6 +60,7 @@ public class StudentsService {
 	}
 	
 	// 특정 학생 수정
+	@CrossOrigin
 	@Transactional(rollbackFor = {Exception.class})
 	public int getUpdateStudents(StudentsVO vo, int studentsId) {
 		vo.setStudentsId(studentsId);
