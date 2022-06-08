@@ -63,7 +63,8 @@ public class BoardService {
 		return boardMapper.updateBoardViews(vo); //3.조회 수 update
 	}
 	
-	public List<Map<String, Object>> getSearchBoardList(String studentsName){
+	public List<Map<String, Object>> getSearchBoardList(String studentsName,int pageNum, int pageSize){
+		PageHelper.startPage(pageNum, pageSize);
 		return boardMapper.selectSearchBoardList(studentsName);
 	}
 	
