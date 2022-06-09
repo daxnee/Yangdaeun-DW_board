@@ -26,7 +26,7 @@ public class BoardService {
 	
 	//게시판 전체 조회
 	// pageNum : 현재 페이지 , pageSize : 한 페이지에 게시물 몇 개 보여줄지 
-	public List<Map<String, Object>> selectBoard(int pageNum, int pageSize){
+	public List<Map<String, Object>> selectBoard(String studentsName, int pageNum, int pageSize){
 		PageHelper.startPage(pageNum, pageSize);
 		return boardMapper.selectBoard();
 	}

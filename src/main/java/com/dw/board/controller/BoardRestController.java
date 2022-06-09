@@ -38,10 +38,12 @@ public class BoardRestController {
 		@CrossOrigin
 		@GetMapping("/board")
 		//리턴타입을 List<Map<String, Object>> => PageInfo<Map<String, Object>>
+		// pageInfo 라는 이미 만들어진 라이브러리를 사용한 것임
 		public PageInfo<Map<String, Object>> callBoardList(@RequestParam("pageNum") int pageNum, 
-				@RequestParam("pageSize") int pageSize ){
+				@RequestParam("pageSize") int pageSize,
+				@RequestParam("writer") String studentsName){
 			
-			List<Map<String, Object>> list =  boardService.selectBoard(pageNum, pageSize);
+			List<Map<String, Object>> list =  boardService.selectBoard(studentsName, pageNum, pageSize);
 			return new PageInfo<Map <String, Object>>(list) ;
 		}
 		
@@ -78,13 +80,20 @@ public class BoardRestController {
 		}
 		
 		// 쿼리스트링으로 검색한 작성자 게시판 리스트 조회
+		// 리턴타입을 페이징 처리했던 컨트롤러 메소드와 동일하게 설정
 		@CrossOrigin
 		@GetMapping("/board/search")
 		public PageInfo<Map<String, Object>> callBoardSearch(@RequestParam("writer") String writer,
 				@RequestParam("pageNum") int pageNum, 
+<<<<<<< Upstream, based on branch 'master' of https://github.com/daxnee/board.git
 				@RequestParam("pageSize") int pageSize){ 
 			List<Map<String, Object>> list = boardService.getSearchBoardList(writer, pageNum, pageSize);
 			return new PageInfo<Map<String, Object>>(list);
+=======
+				@RequestParam("pageSize") int pageSize ){ // @RequestParam : "writer"
+			List<Map<String, Object>> list =  boardService.selectBoard(writer, pageNum, pageSize);
+			return new PageInfo<Map <String, Object>>(list) ;
+>>>>>>> 8aa1431 test
 		}
 		
 		// --- 0531
